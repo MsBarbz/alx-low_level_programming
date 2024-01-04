@@ -1,22 +1,35 @@
 #include "lists.h"
-#include <stdio.h>
+
+
+size_t step_through(const list_t *);
+/**
+ * list_len - find the len of a list
+ * @h: pointer to a list_t
+ *
+ * Return: the lenth of the list.
+ */
+size_t list_len(const list_t *h)
+{
+	if (!h)
+		return (0);
+
+/* Assuming that since the list isn't null there is */
+/* one ele to account for */
+
+	if (!h->next)
+		return (1);
+	return (1 + step_through(h));
+}
 
 /**
- * listint_len - Returns the number of elements
- *               in a linked listint_t list.
- * @h: A pointer to the head of the listint_t list.
+ * step_through - step through the list.
+ * @h: a pointer to a list_t
  *
- * Return: The number of elements in the listint_t list.
+ * Return: a count for every step through the list.
  */
-size_t listint_len(const listint_t *h)
+size_t step_through(const list_t *h)
 {
-	size_t nodes = 0;
-
-	while (h)
-	{
-		nodes++;
-		h = h->next;
-	}
-
-	return (nodes);
+	if (!h->next)
+		return (0);
+	return (1 + step_through(h->next));
 }
